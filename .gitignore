@@ -1,4 +1,3 @@
-
 # Beads / Dolt files (added by bd init)
 .dolt/
 *.db
@@ -10,3 +9,6 @@
 !.beads/config.yaml
 !.beads/metadata.json
 !.beads/identity.toml
+
+# Gas Town runtime
+.gc/
