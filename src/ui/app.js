@@ -8,7 +8,7 @@
  */
 
 import {
-  GameState, PHASE, ACTION, SUIT_SYMBOLS, RANK_SHORT,
+  GameState, PHASE, ACTION, SUIT_SYMBOLS, RANK_SHORT, evaluate,
 } from '../engine/index.js';
 
 import {
