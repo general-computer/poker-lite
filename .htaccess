@@ -20,7 +20,7 @@
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "DENY"
 
-  # Serve source maps only to same-origin
+  # Allow cross-origin access to source maps for browser DevTools
   <FilesMatch "\.map$">
     Header always set Access-Control-Allow-Origin "*"
   </FilesMatch>
