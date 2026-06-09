@@ -12,3 +12,9 @@
 
 # Gas Town runtime
 .gc/
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
