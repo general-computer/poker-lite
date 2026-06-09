@@ -4,3 +4,9 @@
 *.db
 .beads-credential-key
 .beads/proxieddb/
+
+# Gas City
+.beads/*
+!.beads/config.yaml
+!.beads/metadata.json
+!.beads/identity.toml
