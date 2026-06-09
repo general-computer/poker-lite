@@ -80,10 +80,9 @@ function seatPositions(totalSeats) {
 
   // Arrange remaining seats in an arc from left to right across the top
   const remaining = totalSeats - 1;
-  // For 2 total: seat 1 at top center
-  // For 3-9: spread around top half
-  const startAngle = -100; // degrees, left side
-  const endAngle = -80;    // degrees, right side (total span 180+)
+  // Spread across a 180° semicircle: 180° (left) → -90° (top) → 0° (right)
+  const startAngle = 180; // degrees, far left
+  const endAngle = 360;   // degrees, far right (counterclockwise through top)
   const radiusX = 42;       // % horizontal
   const radiusY = 38;       // % vertical
   const centerX = 50;
