@@ -69,7 +69,8 @@ let lastPhase = null;
 /**
  * Calculate seat positions on the table.
  * Seat 0 (human) is always at bottom center.
- * Remaining seats are arranged clockwise around the top half.
+ * Remaining seats are distributed around the table perimeter — left side,
+ * top arc, right side — so bots fan out naturally around an oval table.
  */
 function seatPositions(totalSeats) {
   const positions = [];
@@ -78,19 +79,22 @@ function seatPositions(totalSeats) {
 
   if (totalSeats <= 1) return positions;
 
-  // Arrange remaining seats in an arc from left to right across the top
   const remaining = totalSeats - 1;
-  // Spread across a 180° semicircle: 180° (left) → -90° (top) → 0° (right)
-  const startAngle = 180; // degrees, far left
-  const endAngle = 360;   // degrees, far right (counterclockwise through top)
-  const radiusX = 42;       // % horizontal
-  const radiusY = 38;       // % vertical
+  // Sweep from lower-left (200°) through top (270°) to lower-right (340°).
+  // Angles measured in standard math convention: 0° = right, 90° = top,
+  // 180° = left, 270° = bottom.  The 200°–340° arc passes through the
+  // top at 270°, giving bots a wide U-shaped spread around the table
+  // with the human at the bottom.
+  const startAngle = 200; // degrees — lower left side
+  const endAngle = 340;   // degrees — lower right side
+  const radiusX = 40;     // % horizontal spread
+  const radiusY = 36;     // % vertical spread
   const centerX = 50;
-  const centerY = 42;
+  const centerY = 45;     // lower centre avoids squeezing bots into the top edge
 
   for (let i = 0; i < remaining; i++) {
     const angleDeg = remaining === 1
-      ? -90
+      ? 270 // single bot goes to top centre
       : startAngle + (i / (remaining - 1)) * (endAngle - startAngle);
     const angleRad = (angleDeg * Math.PI) / 180;
     const x = centerX + radiusX * Math.cos(angleRad);
